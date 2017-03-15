@@ -1,0 +1,27 @@
+body, html {
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.calc {
+  margin-top:15%;
+  margin-left: 30%;
+  margin-bottom: 30%;
+  width: 320px;
+  height: 520px;
+}
+input {
+  width: 98%;
+  height:20%;
+  font-size: 60px;
+}
+button {
+  width: 25%;
+  height: 20%;
+  font-size: 20px;
+}
+
+.equal {
+width:50%;
+}
