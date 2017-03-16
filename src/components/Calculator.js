@@ -26,37 +26,48 @@ class Calculator extends React.Component {
     _newValue = (event) => {
       console.log(event)
     }
-    _handleEqualButton = (e) => {
-
+    _handleEqualButton(){
+      const CalculatorOperations = {
+  '/': (prevValue, nextValue) => prevValue / nextValue,
+  '*': (prevValue, nextValue) => prevValue * nextValue,
+  '+': (prevValue, nextValue) => prevValue + nextValue,
+  '-': (prevValue, nextValue) => prevValue - nextValue,
+  '=': (prevValue, nextValue) => nextValue
+}
+  var finalVal = this.state.currentInput.split(" ")
+  console.log(finalVal)
+  // if(finalVal.includes("+"){
+  //
+  // })
     }
     render() {
       return (
          <div className="calc">
            <input type="text" name="input" size="16" value={this.state.currentInput} onChange={this._newValue.bind(this)}/>
            <br/>
-           <button className="clear" name="one" value="  C  " onClick={this._handleClearButton}> C </button>
-           <button name="parenthesis-left" value="  (  " onClick={this._handleButtons.bind(this, "(")}> ( </button>
-           <button name="parenthesis-rigth" value="  ) " onClick={this._handleButtons.bind(this, ")")}> ) </button>
-           <button name="division" value="  /  " onClick={this._handleButtons.bind(this,"/")}> / </button>
+           <button className="clear" name="one" onClick={() => this._handleClearButton}> C </button>
+           <button name="parenthesis-left" onClick={() => this._handleButtons(" ( ")}> ( </button>
+           <button name="parenthesis-rigth" onClick={() => this._handleButtons( " ) ")}> ) </button>
+           <button name="division" onClick={() => this._handleButtons(" / ")}> / </button>
            <br/>
-           <button name="one" value="  1  " onClick={this._handleButtons.bind(this, "1")}> 1 </button>
-           <button name="two" value="  2  " onClick={this._handleButtons.bind(this, "2")}> 2 </button>
-           <button name="three" value="  3  " onClick={this._handleButtons.bind(this, "3")}> 3 </button>
-           <button name="times" value="  *  " onClick={this._handleButtons.bind(this, "*")}> * </button>
+           <button name="one" onClick={()=> this._handleButtons("1")}> 1 </button>
+           <button name="two" onClick={()=> this._handleButtons("2")}> 2 </button>
+           <button name="three" onClick={()=> this._handleButtons("3")}> 3 </button>
+           <button name="times" onClick={()=> this._handleButtons(" * ")}> * </button>
            <br/>
-           <button name="four" value="  4  " onClick={this._handleButtons.bind(this, "4")}> 4 </button>
-           <button name="five" value="  5  " onClick={this._handleButtons.bind(this, "5")}> 5 </button>
-           <button name="six" value="  6  " onClick={this._handleButtons.bind(this, "6")}> 6 </button>
-           <button name="minus" value="  -  " onClick={this._handleButtons.bind(this, "-")}> - </button>
+           <button name="four" onClick={()=> this._handleButtons("4")}> 4 </button>
+           <button name="five" onClick={()=> this._handleButtons("5")}> 5 </button>
+           <button name="six" onClick={()=> this._handleButtons("6")}> 6 </button>
+           <button name="minus" onClick={()=> this._handleButtons(" - ")}> - </button>
            <br/>
-           <button name="seven" value="  7  " onClick={this._handleButtons.bind(this, "7")}> 7 </button>
-           <button name="eight" value="  8  " onClick={this._handleButtons.bind(this, "8")}> 8 </button>
-           <button name="nine" value="  9  " onClick={this._handleButtons.bind(this, "9")}> 9 </button>
-           <button name="plus" value="  +  " onClick={this._handleButtons.bind(this, "+")}> + </button>
+           <button name="seven" onClick={()=> this._handleButtons("7")}> 7 </button>
+           <button name="eight" onClick={()=> this._handleButtons("8")}> 8 </button>
+           <button name="nine" onClick={()=> this._handleButtons("9")}> 9 </button>
+           <button name="plus" onClick={()=> this._handleButtons(" + ")}> + </button>
            <br/>
-           <button name="dot" value="  .  " onClick={this._handleButtons.bind(this, ".")}> . </button>
-           <button name="zero" value="  0  " onClick={this._handleButtons.bind(this, "0")}> 0 </button>
-           <button className="equal" name="DoIt" value="  =  " onSubmit={this._handleEqualButton}> = </button>
+           <button name="dot" onClick={()=> this._handleButtons(".")}> . </button>
+           <button name="zero" onClick={()=> this._handleButtons("0")}> 0 </button>
+           <button className="equal" name="DoIt" onClick={() => this._handleEqualButton()}> = </button>
            <br/>
          </div>
            )
