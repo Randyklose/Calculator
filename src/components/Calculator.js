@@ -26,20 +26,68 @@ class Calculator extends React.Component {
     _newValue = (event) => {
       console.log(event)
     }
-    _handleEqualButton(){
-      const CalculatorOperations = {
-  '/': (prevValue, nextValue) => prevValue / nextValue,
-  '*': (prevValue, nextValue) => prevValue * nextValue,
-  '+': (prevValue, nextValue) => prevValue + nextValue,
-  '-': (prevValue, nextValue) => prevValue - nextValue,
-  '=': (prevValue, nextValue) => nextValue
+//     _handleEqualButton(){
+//       const CalculatorOperations = {
+//   '/': (prevValue, nextValue) => prevValue / nextValue,
+//   '*': (prevValue, nextValue) => prevValue * nextValue,
+//   '+': (prevValue, nextValue) => prevValue + nextValue,
+//   '-': (prevValue, nextValue) => prevValue - nextValue,
+//   '=': (prevValue, nextValue) => nextValue
+// }
+//   var finalVal = this.state.currentInput.split(" ")
+//   console.log(finalVal)
+//   if(finalVal.includes("+"){
+//
+//   })
+//
+//     }
+calculate(input){
+
+   var f = { add : '+'
+           , sub : '-'
+           , div : '/'
+           , mlt : '*'};
+
+   // Create array for Order of Operation and precedence
+   f.ooo = [[ [f.mlt] , [f.div]],
+            [ [f.add] , [f.sub] ]];
+
+   input = this.state.currentInput.replace(/[^0-9%^*\/()\-+.]/g,'');           // clean up unnecessary characters
+   console.log(input)
+   var output;
+   for(var i=0, n=f.ooo.length; i<n; i++ ){
+
+      // Regular Expression to look for operators between floating numbers or integers
+      var re = new RegExp('(\\d+\\.?\\d*)([\\'+f.ooo[i].join('\\')+'])(\\d+\\.?\\d*)');
+      re.lastIndex = 0;                                     // be cautious and reset re start pos
+
+      // Loop while there is still calculation for level of precedence
+      while( re.test(input) ){
+         //document.write('<div>' + input + '</div>');
+         output = calc_internal(RegExp.$1,RegExp.$2,RegExp.$3);
+         if (isNaN(output) || !isFinite(output)) return output;   // exit early if not a number
+         input  = input.replace(re,output);
+      }
+   }
+
+   return output;
+
+   function calc_internal(a,op,b){
+      a=a*1; b=b*1;
+      switch(op){
+         case f.add: return a+b; break;
+         case f.sub: return a-b; break;
+         case f.div: return a/b; break;
+         case f.mlt: return a*b; break;
+         default: null;
+      }
+   }
+   console.log(output)
+   this.setState({
+     currentInput:output
+   })
 }
-  var finalVal = this.state.currentInput.split(" ")
-  console.log(finalVal)
-  // if(finalVal.includes("+"){
-  //
-  // })
-    }
+
     render() {
       return (
          <div className="calc">
@@ -67,7 +115,7 @@ class Calculator extends React.Component {
            <br/>
            <button name="dot" onClick={()=> this._handleButtons(".")}> . </button>
            <button name="zero" onClick={()=> this._handleButtons("0")}> 0 </button>
-           <button className="equal" name="DoIt" onClick={() => this._handleEqualButton()}> = </button>
+           <button className="equal" name="DoIt" onClick={() => this.calculate()}> = </button>
            <br/>
          </div>
            )
