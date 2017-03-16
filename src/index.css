@@ -14,7 +14,8 @@ body, html {
 input {
   width: 98%;
   height:20%;
-  font-size: 60px;
+  font-size: 30px;
+  text-align: right;
 }
 button {
   width: 25%;
