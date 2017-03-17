@@ -2,10 +2,11 @@ body, html {
   padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
+  background-color: rgb(102, 108, 105);
 }
 
 .calc {
-  margin-top:15%;
+  margin-top:5%;
   margin-left: 30%;
   margin-bottom: 30%;
   width: 320px;
@@ -16,13 +17,19 @@ input {
   height:20%;
   font-size: 30px;
   text-align: right;
+  background-color: rgba(22, 21, 20, 0.59);
+  color:White;
+  border:1px solid black;
 }
 button {
   width: 25%;
   height: 20%;
   font-size: 20px;
+  background-color:rgb(67, 120, 170);
+  border:1px solid black;
 }
 
 .equal {
 width:50%;
+background-color: rgb(31, 197, 241);
 }
